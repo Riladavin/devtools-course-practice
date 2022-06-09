@@ -1,16 +1,7 @@
-/*
-* @file kruskal.h
-*
-* Author: Ilya Khlyustov
-* Create: 6/9/2022
-* Notes:
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*/
+// Copyright 2022 Khlyustov Ilya
 
-#ifndef DEVTOOLS_COURSE_PRACTICE_KRUSKAL_H
-#define DEVTOOLS_COURSE_PRACTICE_KRUSKAL_H
+#ifndef MODULES_KHLYUSTOV_ILYA_KRUSKAL_ALGORITHM_INCLUDE_KRUSKAL_H_
+#define MODULES_KHLYUSTOV_ILYA_KRUSKAL_ALGORITHM_INCLUDE_KRUSKAL_H_
 
 #include <vector>
 #include <numeric>
@@ -26,8 +17,7 @@ struct Edge {
 };
 
 class Graph {
-public:
-
+ public:
     explicit Graph(size_t nodesCount);
 
     Graph(size_t nodesCount, std::vector<Edge> edges);
@@ -40,7 +30,7 @@ public:
 
     void addEdge(const Edge& newEdge);
 
-private:
+ private:
     size_t _nodesCount;
     std::vector<size_t> _parent, _rank;
     std::vector<Edge> _edges;
@@ -50,4 +40,5 @@ private:
     size_t getRepresentativeParent(size_t src);
 };
 
-#endif //DEVTOOLS_COURSE_PRACTICE_KRUSKAL_H
+
+#endif // MODULES_KHLYUSTOV_ILYA_KRUSKAL_ALGORITHM_INCLUDE_KRUSKAL_H_

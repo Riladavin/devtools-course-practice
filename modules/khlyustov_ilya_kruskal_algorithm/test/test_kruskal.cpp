@@ -1,13 +1,4 @@
-/*
-* @file test_kruskal.cpp
-*
-* Author: Ilya Khlyustov
-* Create: 6/9/2022
-* Notes:
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*/
+// Copyright 2022 Khlyustov Ilya
 
 
 #include <gtest/gtest.h>
