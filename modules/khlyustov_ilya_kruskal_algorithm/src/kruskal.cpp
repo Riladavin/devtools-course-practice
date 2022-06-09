@@ -10,7 +10,10 @@ bool Edge::operator <(const Edge& rhs) const {
     return weight < rhs.weight;
 }
 
-Edge::Edge(size_t src_, size_t dst_, int weight_): src(src_), dst(dst_), weight(weight_) {}
+Edge::Edge(size_t src_, size_t dst_, int weight_):
+    src(src_),
+    dst(dst_),
+    weight(weight_) {}
 
 Graph::Graph(size_t nodesCount): _parent(nodesCount), _rank(nodesCount, 0) {
     iota(_parent.begin(), _parent.end(), 0);
