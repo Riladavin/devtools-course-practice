@@ -1,8 +1,6 @@
 /*
-* @file Kruskal.h
+* @file test_main.cpp
 *
-* Copyright (C) Huawei Technologies Co., Ltd. 2022. All rights reserved.
-* Description: inference process
 * Author: Ilya Khlyustov
 * Create: 6/9/2022
 * Notes:

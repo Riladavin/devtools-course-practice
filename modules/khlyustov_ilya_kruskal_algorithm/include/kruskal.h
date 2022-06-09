@@ -1,8 +1,6 @@
 /*
-* @file Kruskal.h
+* @file kruskal.h
 *
-* Copyright (C) Huawei Technologies Co., Ltd. 2022. All rights reserved.
-* Description: inference process
 * Author: Ilya Khlyustov
 * Create: 6/9/2022
 * Notes:
@@ -15,37 +13,41 @@
 #define DEVTOOLS_COURSE_PRACTICE_KRUSKAL_H
 
 #include <vector>
+#include <numeric>
+#include <stdexcept>
 
 struct Edge {
-private:
-    size_t src;
-    size_t dst;
+    Edge(size_t src_, size_t dst_, int weight_);
+
+    bool operator <(const Edge& rhs) const;
+
+    size_t src, dst;
     int weight;
-
-    Edge();
-    Edge(const size_t src_, const size_t dst_, const int weight_);
-
-    friend Graph;
 };
 
 class Graph {
 public:
 
-    Graph(size_t nodesCount) {
-        
-    }
+    explicit Graph(size_t nodesCount);
 
-    Graph(size_t nodesCount, vector<) {
-    }
+    Graph(size_t nodesCount, std::vector<Edge> edges);
 
+    std::vector<Edge> getMST();
 
+    size_t getNodesCount();
+
+    size_t getEdgesCount();
+
+    void addEdge(const Edge& newEdge);
 
 private:
-    vector<size_t> parent;
+    size_t _nodesCount;
+    std::vector<size_t> _parent, _rank;
+    std::vector<Edge> _edges;
 
-    void unite(size_t src, size_t dst);
+    bool unite(size_t a, size_t b);
 
-    void getParent(size_t src);
+    size_t getRepresentativeParent(size_t src);
 };
 
 #endif //DEVTOOLS_COURSE_PRACTICE_KRUSKAL_H

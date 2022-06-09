@@ -1,8 +1,6 @@
 /*
-* @file Kruskal.cpp
+* @file kruskal.cpp
 *
-* Copyright (C) Huawei Technologies Co., Ltd. 2022. All rights reserved.
-* Description: inference process
 * Author: Ilya Khlyustov
 * Create: 6/9/2022
 * Notes:
@@ -12,102 +10,80 @@
 */
 
 #include <vector>
-
+#include <stdexcept>
 #include <algorithm>
 
 #include "include/kruskal.h"
 
-Edge::Edge(): src(0), dst(0), weight(0) {}
-
-Edge::Edge(const unsigned int src_, const unsigned int dst_,
-           const int weight_):
-        src(src_), dst(dst_), weight(weight_) {}
-
-bool Edge::operator == (const Edge & a) {
-    return src == a.src && dst == a.dst && weight == a.weight;
+bool Edge::operator <(const Edge& rhs) const {
+    return weight < rhs.weight;
 }
 
-bool comparator(Edge a, Edge b) {
-    return a.weight < b.weight;
+Edge::Edge(size_t src_, size_t dst_, int weight_): src(src_), dst(dst_), weight(weight_) {}
+
+Graph::Graph(size_t nodesCount): _parent(nodesCount), _rank(nodesCount, 0) {
+    iota(_parent.begin(), _parent.end(), 0);
 }
 
-Graph::Graph(const unsigned int edges_,
-             const unsigned int vertices_): V(vertices_), E(edges_) {
-    vertices = std::vector < node > (vertices_);
-    edges = std::vector < Edge > ();
-}
-
-Graph::Graph(const Graph & graph): V(graph.V), E(graph.E) {
-    vertices = graph.vertices;
-    edges = graph.edges;
-}
-
-int Graph::getVerticesCount() const {
-    return V;
-}
-
-int Graph::getEdgesCount() const {
-    return E;
-}
-
-void Graph::setEdgesCount(const unsigned int e) {
-    if (e >= E)
-        E = e;
-    else
-        throw "The new number of edges should should be biger than :" + E;
-}
-
-void Graph::insertEdge(const Edge & edge) {
-    if (edge.src >= V || edge.dst >= V)
-        throw "out of range";
-    else if (static_cast<unsigned int>(edges.size()) == E)
-        throw "cannot insert more elemnts";
-    edges.push_back(edge);
-}
-
-bool Graph::contains(const Edge & edge) {
-    if (edges.empty())
-        return false;
-    return std::count(edges.begin(), edges.end(), edge);
-}
-
-int Graph::findAbsoluteParent(const unsigned int index) {
-    if (vertices[index].parent == -1)
-        return index;
-    return vertices[index].parent = findAbsoluteParent(vertices[index].parent);
-}
-
-std::vector < Edge > Graph::KruskalMST() {
-    sort(edges.begin(), edges.end(), comparator);
-    std::vector < Edge > MST;
-
-    unsigned int i = 0, j = 0;
-    while (i < V - 1 && j < E) {
-        // FIND absolute parent of subset
-        int fromP = findAbsoluteParent(edges[j].src);
-        int toP = findAbsoluteParent(edges[j].dst);
-
-        if (fromP == toP) {
-            ++j;
-            continue;
+Graph::Graph(size_t nodesCount, std::vector<Edge> edges): Graph(nodesCount) {
+    for (const auto& edge : edges) {
+        if (edge.src >= nodesCount || edge.dst >= nodesCount) {
+            throw std::runtime_error("Edge endpoint out of range");
         }
-
-        // UNION operation
-        union_op(fromP, toP);  // UNION of 2 sets
-        MST.push_back(edges[j]);
-        ++i;
     }
-    return MST;
+    _edges = edges;
 }
 
-void Graph::union_op(const unsigned int fromP, const unsigned int toP) {
-    if (vertices[fromP].rank > vertices[toP].rank) {  // fromP has higher rank
-        vertices[toP].parent = fromP;
-    } else if (vertices[fromP].rank < vertices[toP].rank) {
-        vertices[fromP].parent = toP;  // toP has higher rank
-    } else {
-        // Both have same rank and so anyone can be made as parent
-        vertices[fromP].parent = toP;
-        vertices[toP].rank += 1;  // Increase rank of parent
+bool Graph::unite(size_t a, size_t b) {
+    a = getRepresentativeParent(a);
+    b = getRepresentativeParent(b);
+    if (a == b) {
+        return false;
     }
+
+    if (_rank[a] < _rank[b])
+        std::swap(a, b);
+
+    _parent[b] = a;
+    _rank[a] += _rank[a] == _rank[b];
+
+    return true;
+}
+
+size_t Graph::getRepresentativeParent(size_t src) {
+    if (_parent.at(src) == src)
+        return src;
+    return _parent.at(src) = getRepresentativeParent(_parent.at(src));
+}
+
+std::vector<Edge> Graph::getMST() {
+    std::sort(_edges.begin(), _edges.end());
+    std::vector<Edge> mst;
+
+    for (const auto& edge : _edges) {
+        if (unite(edge.dst, edge.src)) {
+            mst.push_back(edge);
+        }
+    }
+
+    if (mst.size() + 1 != _nodesCount)
+        throw std::runtime_error("Not enough edges for build MST");
+
+    return mst;
+}
+
+size_t Graph::getNodesCount() {
+    return _nodesCount;
+}
+
+size_t Graph::getEdgesCount() {
+    return _edges.size();
+}
+
+void Graph::addEdge(const Edge &newEdge) {
+    if (newEdge.dst >= _nodesCount || newEdge.src >= _nodesCount) {
+        throw std::runtime_error("Edge endpoint out of range");
+    }
+
+    _edges.push_back(newEdge);
 }
