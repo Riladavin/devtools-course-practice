@@ -2,6 +2,7 @@
 
 
 #include <gtest/gtest.h>
+#include <vector>
 
 #include "include/kruskal.h"
 
