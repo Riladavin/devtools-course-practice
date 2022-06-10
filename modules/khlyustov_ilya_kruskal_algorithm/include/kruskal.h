@@ -12,6 +12,8 @@ struct Edge {
 
     bool operator <(const Edge& rhs) const;
 
+    bool operator ==(const Edge& rhs) const;
+
     size_t src, dst;
     int weight;
 };

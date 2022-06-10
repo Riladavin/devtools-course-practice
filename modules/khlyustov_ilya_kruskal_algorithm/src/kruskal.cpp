@@ -6,16 +6,23 @@
 
 #include "include/kruskal.h"
 
+Edge::Edge(size_t src_, size_t dst_, int weight_):
+        src(src_),
+        dst(dst_),
+        weight(weight_) {}
+
 bool Edge::operator <(const Edge& rhs) const {
     return weight < rhs.weight;
 }
 
-Edge::Edge(size_t src_, size_t dst_, int weight_):
-    src(src_),
-    dst(dst_),
-    weight(weight_) {}
+bool Edge::operator==(const Edge &rhs) const {
+    return rhs.src == src && rhs.dst == dst && rhs.weight == weight;
+}
 
-Graph::Graph(size_t nodesCount): _parent(nodesCount), _rank(nodesCount, 0) {
+Graph::Graph(size_t nodesCount):
+    _nodesCount(nodesCount),
+    _parent(nodesCount),
+    _rank(nodesCount, 0) {
     iota(_parent.begin(), _parent.end(), 0);
 }
 
@@ -75,7 +82,7 @@ size_t Graph::getEdgesCount() {
 }
 
 void Graph::addEdge(const Edge &newEdge) {
-    if (newEdge.dst >= _nodesCount || newEdge.src >= _nodesCount) {
+    if (newEdge.src >= _nodesCount || newEdge.dst >= _nodesCount) {
         throw std::runtime_error("Edge endpoint out of range");
     }
 

@@ -94,7 +94,7 @@ TEST(Kruskal_Algorithm, CountOfEdgesFunctionality) {
 
     Graph testGraph(nodes, edges);
 
-    EXPECT_EQ(6, testGraph.getMST());
+    EXPECT_EQ(static_cast<size_t>(6), testGraph.getEdgesCount());
 }
 
 TEST(Kruskal_Algorithm, CountOfNodesFunctionality) {
@@ -110,7 +110,7 @@ TEST(Kruskal_Algorithm, CountOfNodesFunctionality) {
 
     Graph testGraph(nodes, edges);
 
-    EXPECT_EQ(5, testGraph.getMST());
+    EXPECT_EQ(static_cast<size_t>(5), testGraph.getNodesCount());
 }
 
 TEST(Kruskal_Algorithm, AddEdgeFunctionality) {
@@ -125,10 +125,8 @@ TEST(Kruskal_Algorithm, AddEdgeFunctionality) {
         Edge(2, 4, 4),
         Edge(4, 3, 5),
         Edge(1, 4, 6)}) {
-        testGraph.addEdge(edge);
+        EXPECT_NO_THROW(testGraph.addEdge(edge););
     }
-
-    EXPECT_EQ(6, testGraph.getMST());
 }
 
 TEST(Kruskal, OutOfRangeVertexExceptionViaAdding) {
