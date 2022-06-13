@@ -6,11 +6,10 @@
 #include <string>
 #include <vector>
 #include <utility>
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdint.h>
-#include <string.h>
-#include <string>
+#include <cstdio>
+#include <cstdlib>
+#include <cstdint>
+#include <cstring>
 #include <sstream>
 #include <algorithm>
 #include <random>
