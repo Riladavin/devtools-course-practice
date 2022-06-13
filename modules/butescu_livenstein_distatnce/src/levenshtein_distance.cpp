@@ -1,8 +1,19 @@
 // Copyright 2022 Butescu Vladimir
 
+#include <array>
 #include <string>
-#include <algorithm>
 #include <vector>
+#include <utility>
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <string.h>
+#include <string>
+#include <sstream>
+#include <algorithm>
+#include <random>
+#include <iostream>
+
 #include "include/levenshtein_distance.h"
 
 uint32_t Levenshtein::LevenshteinDistance(

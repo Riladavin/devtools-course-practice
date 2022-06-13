@@ -7,6 +7,15 @@
 #include <string>
 #include <vector>
 #include <utility>
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <string.h>
+#include <string>
+#include <sstream>
+#include <algorithm>
+#include <random>
+#include <iostream>
 
 class LevenshteinDistanceApp {
  public:

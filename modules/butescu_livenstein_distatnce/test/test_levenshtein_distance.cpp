@@ -1,7 +1,20 @@
 // Copyright 2022 Butescu Vladimir
 
 #include <gtest/gtest.h>
+#include <array>
 #include <string>
+#include <vector>
+#include <utility>
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <string.h>
+#include <string>
+#include <sstream>
+#include <algorithm>
+#include <random>
+#include <iostream>
+
 #include "include/levenshtein_distance.h"
 
 TEST(Butescu_levenshtein_distance, test_zero_value) {

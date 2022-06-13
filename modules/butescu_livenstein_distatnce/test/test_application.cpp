@@ -1,8 +1,20 @@
 // Copyright 2022 Khlyustov Ilya
 
 #include <gtest/gtest.h>
+#include <array>
 #include <string>
 #include <vector>
+#include <utility>
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <string.h>
+#include <string>
+#include <sstream>
+#include <algorithm>
+#include <random>
+#include <iostream>
+
 #include "include/levenshtein_distance_application.h"
 
 using ::testing::internal::RE;
