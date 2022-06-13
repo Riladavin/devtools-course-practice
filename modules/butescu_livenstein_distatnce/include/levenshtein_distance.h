@@ -9,7 +9,9 @@
 
 class Levenshtein {
  public:
-    static uint32_t LevenshteinDistance(std::string const& source, std::string const& target);
+    static uint32_t LevenshteinDistance(
+        std::string const& source,
+        std::string const& target);
 };
 
 #endif  // MODULES_BUTESCU_LIVENSTEIN_DISTATNCE_INCLUDE_LEVENSHTEIN_DISTANCE_H_
