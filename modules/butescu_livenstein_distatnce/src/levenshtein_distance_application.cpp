@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include "include/application.h"
+#include "include/levenshtein_distance_application.h"
 #include "include/levenshtein_distance.h"
 
 LevenshteinDistanceApp::LevenshteinDistanceApp() {}
