@@ -5,10 +5,10 @@
 #include <string>
 #include <vector>
 #include <utility>
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdint.h>
-#include <string.h>
+#include <сstdio>
+#include <сstdlib>
+#include <сstdint>
+#include <сstring>
 #include <sstream>
 #include <algorithm>
 #include <random>
