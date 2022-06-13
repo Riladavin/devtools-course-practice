@@ -1,7 +1,7 @@
 // Copyright 2022 Khlyustov Ilya
 
-#include <stdlib.h>
-#include <stdio.h>
+#include <сstdlib>
+#include <сstdio>
 #include <string>
 
 #include "include/levenshtein_distance_application.h"
