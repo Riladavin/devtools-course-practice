@@ -49,7 +49,7 @@ TEST_F(LevenshteinDistanceAppTest, Help) {
   Act(args);
 
   Assert(
-    "This is an application to count levenshtein distance of two strings.\n" + 
+    "This is an application to count levenshtein distance of two strings.\n" +
     "You need to input two strings\n");
 }
 
