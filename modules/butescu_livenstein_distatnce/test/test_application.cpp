@@ -55,9 +55,11 @@ TEST_F(LevenshteinDistanceAppTest, Help) {
 
   Act(args);
 
-  Assert(
-    std::string("This is an application to count levenshtein distance of two strings.\n") +
-    std::string("You need to input two strings\n"));
+  std::string expected = "This is an application to count levenshtein";
+  expected += " distance of two strings.\n";
+  expected += "You need to input two strings\n";
+
+  Assert(expected);
 }
 
 TEST_F(LevenshteinDistanceAppTest, ClassicalCase1) {
