@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <random>
 #include <iostream>
+#include <numeric>
 
 #include "include/levenshtein_distance.h"
 
