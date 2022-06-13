@@ -7,10 +7,10 @@
 #include <string>
 #include <vector>
 #include <utility>
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdint.h>
-#include <string.h>
+#include <cstdio>
+#include <cstdlib>
+#include <cstdint>
+#include <cstring>
 #include <string>
 #include <sstream>
 #include <algorithm>
