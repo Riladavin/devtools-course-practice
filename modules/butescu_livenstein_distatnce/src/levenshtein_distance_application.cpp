@@ -4,10 +4,6 @@
 #include <string>
 #include <vector>
 #include <utility>
-#include <сstdio>
-#include <сstdlib>
-#include <сstdint>
-#include <сstring>
 #include <sstream>
 #include <algorithm>
 #include <random>
@@ -20,8 +16,8 @@ LevenshteinDistanceApp::LevenshteinDistanceApp() {}
 
 std::string help() {
   return
-    "This is an application to count levenshtein distance of two strings.\n" +
-    "You need to input two strings\n";
+    std::string("This is an application to count levenshtein distance of two strings.\n") +
+    std::string("You need to input two strings\n");
 }
 
 std::string error() {
@@ -30,7 +26,7 @@ std::string error() {
 
 std::string LevenshteinDistanceApp::operator()(int argc, const char** argv) {
   if (argc == 2) {
-    return (argv[1] == "-h" || argv[1] == "--help") ? help() : error();
+    return (std::string(argv[1]) == "-h" || std::string(argv[1]) == "--help") ? help() : error();
   } else if (argc != 3) {
     return error();
   }

@@ -4,10 +4,6 @@
 #include <string>
 #include <vector>
 #include <utility>
-#include <сstdio>
-#include <сstdlib>
-#include <сstdint>
-#include <сstring>
 #include <sstream>
 #include <algorithm>
 #include <random>
@@ -15,13 +11,17 @@
 
 #include "include/levenshtein_distance.h"
 
+bool equals(std::string::value_type lhs, std::string::value_type rhs) {
+    return lhs == rhs;
+}
+
 uint32_t Levenshtein::LevenshteinDistance(
     const std::string& source,
     const std::string& target) {
     std::vector<std::vector<uint32_t>> lev_dist(source.length() + 1,
         std::vector<uint32_t>(target.length() + 1));
 
-    iota(lev_dist[i].begin(), lev_dist[i].end(), 0);
+    std::iota(lev_dist[0].begin(), lev_dist[0].end(), 0);
 
     for (size_t i = 0; i < source.length(); ++i) {
         lev_dist[i + 1][0] = lev_dist[i][0] + 1;
@@ -29,7 +29,7 @@ uint32_t Levenshtein::LevenshteinDistance(
         for (std::size_t j = 0; j < target.length(); ++j) {
             lev_dist[i + 1][j + 1] = std::min(std::min(
                 lev_dist[i + 1][j] + 1,
-                lev_dist[i][j + 1] + 1,
+                lev_dist[i][j + 1] + 1),
                 lev_dist[i][j] + !equals(source[i], target[j]));
         }
     }

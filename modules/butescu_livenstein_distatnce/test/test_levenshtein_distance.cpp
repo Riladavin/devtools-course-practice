@@ -5,10 +5,6 @@
 #include <string>
 #include <vector>
 #include <utility>
-#include <сstdio>
-#include <сstdlib>
-#include <сstdint>
-#include <сstring>
 #include <sstream>
 #include <algorithm>
 #include <random>

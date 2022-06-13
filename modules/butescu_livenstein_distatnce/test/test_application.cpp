@@ -5,10 +5,6 @@
 #include <string>
 #include <vector>
 #include <utility>
-#include <сstdio>
-#include <сstdlib>
-#include <сstdint>
-#include <сstring>
 #include <sstream>
 #include <algorithm>
 #include <random>
@@ -60,8 +56,8 @@ TEST_F(LevenshteinDistanceAppTest, Help) {
   Act(args);
 
   Assert(
-    "This is an application to count levenshtein distance of two strings.\n" +
-    "You need to input two strings\n");
+    std::string("This is an application to count levenshtein distance of two strings.\n") +
+    std::string("You need to input two strings\n"));
 }
 
 TEST_F(LevenshteinDistanceAppTest, ClassicalCase1) {
