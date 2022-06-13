@@ -5,7 +5,9 @@
 #include <vector>
 #include "include/levenshtein_distance.h"
 
-uint32_t Levenshtein::LevenshteinDistance(const std::string& source, const std::string& target) {
+uint32_t Levenshtein::LevenshteinDistance(
+    const std::string& source,
+    const std::string& target) {
     std::vector<std::vector<uint32_t>> lev_dist(source.length() + 1,
         std::vector<uint32_t>(target.length() + 1));
 
